@@ -1,0 +1,23 @@
+# ESP-IDF build
+/build/
+
+# CMake / Ninja
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+*.ninja
+*.ninja_deps
+*.ninja_log
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / dumps
+*.log
+core.*
