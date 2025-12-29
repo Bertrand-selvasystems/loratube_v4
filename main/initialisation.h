@@ -12,6 +12,7 @@
 #include "PCF8523_module.h"
 #include "E22_module.h"
 #include "FRAM_module.h"
+#include "system_state.h"
 
 #ifdef __cplusplus
 extern "C" {

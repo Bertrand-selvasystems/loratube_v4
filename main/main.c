@@ -1,6 +1,6 @@
 #include "initialisation.h"
 #include "test.h"
-//#include "pca_mgr_task.h"
+#include "pca_mgr_task.h"
 #include "PCA9536_module.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -18,7 +18,7 @@ void app_main(void)
     loratube_test_config_t tcfg = loratube_test_config_default();
     ESP_ERROR_CHECK(loratube_run_tests(&ctx, &tcfg));
 
-    // ESP_ERROR_CHECK(pca_mgr_set_green(PCA_LED_BLINK_SLOW));
-    // ESP_ERROR_CHECK(pca_mgr_set_red(PCA_LED_BLINK_FAST));
+    ESP_ERROR_CHECK(pca_mgr_set_green(PCA_LED_BLINK_SLOW));
+    ESP_ERROR_CHECK(pca_mgr_set_red(PCA_LED_BLINK_FAST));
 
 }
