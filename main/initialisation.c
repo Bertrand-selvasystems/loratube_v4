@@ -63,6 +63,8 @@ loratube_init_config_t loratube_init_config_default(void)
     c.enable_buck_mode = true;
 
     c.e22_cfg = e22_config_default();
+
+    c.pca_cfg = pca9536_config_default(I2C_NUM_0);
     return c;
 }
 

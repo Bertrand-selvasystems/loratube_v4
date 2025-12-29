@@ -40,6 +40,8 @@ typedef struct {
     uint8_t  blink_cycles;
     uint32_t blink_period_ms;
 
+    pca9536_config_t pca_cfg;
+
     bool enable_e22_power;   // GP0
     bool enable_buck_mode;   // GP3
 } loratube_init_config_t;
