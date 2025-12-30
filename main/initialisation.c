@@ -208,6 +208,9 @@ ESP_RETURN_ON_ERROR(pca9536_init(&ctx->io, &pca_cfg), TAG, "PCA9536 init failed"
     // initialisation des event bit
     ESP_RETURN_ON_ERROR(system_state_init(), TAG, "system_state_init failed");
 
+    // initialisation des queues
+    ESP_ERROR_CHECK(system_queues_init());
+
     // 6) Smoke test
     (void)loratube_e22_smoke_test(ctx);
 

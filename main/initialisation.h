@@ -13,7 +13,7 @@
 #include "E22_module.h"
 #include "FRAM_module.h"
 #include "system_state.h"
-
+#include "system_queues.h"
 
 #ifdef __cplusplus
 extern "C" {

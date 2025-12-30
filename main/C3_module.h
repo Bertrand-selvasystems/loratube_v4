@@ -55,29 +55,6 @@ esp_err_t diag_vsense_read(double *out_vpack, uint32_t *out_k_mean, uint32_t *ou
 void diag_vsense_log_periodic(const char *tag, uint32_t samples, uint32_t period_ms);
 double diag_vsense_adc_to_voltage(double K);
 
-// =============================
-//  E22 GPIO STATE LOGGER
-// =============================
-
-typedef struct {
-    gpio_num_t m0;
-    gpio_num_t m1;
-    gpio_num_t aux;
-    gpio_num_t tx;
-    gpio_num_t rx;
-} e22_gpio_pins_t;
-
-void e22_log_gpio_state(const char *tag, const e22_gpio_pins_t *pins);
-
-#if defined(E22_M0_GPIO) && defined(E22_M1_GPIO) && defined(E22_AUX_GPIO) && defined(E22_TX_GPIO) && defined(E22_RX_GPIO)
-#define E22_GPIO_PINS_DEFAULT() ((e22_gpio_pins_t){ \
-    .m0  = (gpio_num_t)E22_M0_GPIO, \
-    .m1  = (gpio_num_t)E22_M1_GPIO, \
-    .aux = (gpio_num_t)E22_AUX_GPIO, \
-    .tx  = (gpio_num_t)E22_TX_GPIO, \
-    .rx  = (gpio_num_t)E22_RX_GPIO, \
-})
-#endif
 
 #ifdef __cplusplus
 }

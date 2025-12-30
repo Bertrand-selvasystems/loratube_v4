@@ -6,6 +6,7 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "mcu_alive_twdt.h"
+#include "mesure_task.h"
 
 // Example usage (app_main or init code)
 
@@ -17,6 +18,10 @@ sw_wdt_cfg_t cfg = {
     .trigger_panic   = true,
 };
 
+mesure_task_cfg_t mcfg = {
+    .n_iter = 5,
+    .delay_ms = 50,
+};
 
 
 void app_main(void)
@@ -25,6 +30,9 @@ void app_main(void)
 
     // lance le watchdog    
     ESP_ERROR_CHECK(sw_wdt_start(&cfg));
+
+    // lancement de la task de mesure
+    ESP_ERROR_CHECK(mesure_task_start(&mcfg));
     
     loratube_ctx_t ctx;
     loratube_init_config_t icfg = loratube_init_config_default();
