@@ -15,6 +15,7 @@ extern "C" {
 // =====================
 extern QueueHandle_t q_temp;
 extern QueueHandle_t q_vbat;
+extern QueueHandle_t q_rtc_time;
 
 // =====================
 // Init / Debug

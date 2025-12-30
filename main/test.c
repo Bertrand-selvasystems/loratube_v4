@@ -87,7 +87,7 @@ esp_err_t loratube_run_tests(loratube_ctx_t *ctx, const loratube_test_config_t *
     // --- RTC tests ---
     if (t->rtc_debug_init_irq_timer)
     {
-        esp_err_t err = pcf8523_debug_init_irq_timer(&ctx->rtc, t->rtc_log_readback);
+        esp_err_t err = pcf8523_debug_init_irq_timer(&ctx->rtc, true, t->rtc_log_readback);
         if (err == ESP_OK)
             ESP_LOGI("RTC", "PCF8523 configuré en IRQ timer open-drain (diagnostic passé).");
         else

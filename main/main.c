@@ -10,16 +10,15 @@
 
 // Example usage (app_main or init code)
 
-
-sw_wdt_cfg_t cfg = {
+static const sw_wdt_cfg_t g_wdt_cfg = {
     .twdt_timeout_ms = 3000,
     .kick_period_ms  = 1000,
     .idle_core_mask  = 0x1,
     .trigger_panic   = true,
 };
 
-mesure_task_cfg_t mcfg = {
-    .n_iter = 5,
+static const mesure_task_cfg_t g_mes_cfg = {
+    .n_iter   = 5,
     .delay_ms = 50,
 };
 
@@ -28,12 +27,6 @@ void app_main(void)
 {
 
 
-    // lance le watchdog    
-    ESP_ERROR_CHECK(sw_wdt_start(&cfg));
-
-    // lancement de la task de mesure
-    ESP_ERROR_CHECK(mesure_task_start(&mcfg));
-    
     loratube_ctx_t ctx;
     loratube_init_config_t icfg = loratube_init_config_default();
     ESP_ERROR_CHECK(loratube_init(&ctx, &icfg));
@@ -44,4 +37,11 @@ void app_main(void)
     ESP_ERROR_CHECK(pca_mgr_set_green(PCA_LED_BLINK_SLOW));
     ESP_ERROR_CHECK(pca_mgr_set_red(PCA_LED_BLINK_FAST));
 
+
+    // lance le watchdog    
+    ESP_ERROR_CHECK(sw_wdt_start(&g_wdt_cfg));
+
+    // lancement de la task de mesure
+    ESP_ERROR_CHECK(mesure_task_start(&g_mes_cfg));
+    
 }

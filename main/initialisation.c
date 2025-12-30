@@ -181,7 +181,7 @@ ESP_RETURN_ON_ERROR(pca9536_init(&ctx->io, &pca_cfg), TAG, "PCA9536 init failed"
     );
 
     if (cfg->do_rtc_debug_irq_timer) {
-        esp_err_t r = pcf8523_debug_init_irq_timer(&ctx->rtc, true);
+        esp_err_t r = pcf8523_debug_init_irq_timer(&ctx->rtc, true, true);
         if (r == ESP_OK) ESP_LOGI("RTC", "PCF8523 IRQ timer open-drain (debug).");
         else ESP_LOGE("RTC", "PCF8523 debug irq_timer failed: %s", esp_err_to_name(r));
     }
