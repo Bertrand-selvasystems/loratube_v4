@@ -115,6 +115,9 @@ void e22_log_gpio_state(e22_handle_t *h, const char *tag);
  */
 void e22_super_debug(e22_handle_t *h, uint32_t sniff_ms);
 
+
+
+
 #ifdef __cplusplus
 }
 #endif

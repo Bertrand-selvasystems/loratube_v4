@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "esp_err.h"
 #include "driver/gpio.h"
+#include "C3_types.h"
 
 // ADC legacy types (si tu gardes adc1_config_* / adc1_get_raw)
 #include "driver/adc.h"

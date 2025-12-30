@@ -20,7 +20,7 @@
 #include "system_state.h"     // eg_state + EG_STATE_MEAS_DONE
 #include "system_types.h"     // c3_temp_msg_t / c3_vbat_msg_t
 #include "C3_module.h"        // diag_tsens_* / diag_vsense_*
-
+#include <math.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -103,15 +103,18 @@ static void mesure_task_(void *arg)
     uint32_t n = (g_cfg.n_iter == 0) ? 1u : (uint32_t)g_cfg.n_iter;
 
     for (uint32_t i = 0; i < n; i++) {
-        tmsg.temp_c = read_temp_c_();
-        vmsg.vbat_v = read_vbat_v_();
+        tmsg.c10 = (int16_t)lroundf(read_temp_c_() * 10.0f);
+        vmsg.mv  = (uint16_t)lroundf(read_vbat_v_() * 1000.0f);
 
         /* Queues taille 1 => on écrase la dernière valeur. */
         (void)xQueueOverwrite(q_temp, &tmsg);
         (void)xQueueOverwrite(q_vbat, &vmsg);
 
-        ESP_LOGI(TAG, "iter %u/%u: T=%.2f C, VBAT=%.3f V",
-                 (unsigned)(i + 1), (unsigned)n, tmsg.temp_c, vmsg.vbat_v);
+        ESP_LOGI(TAG, "iter %u/%u: T=%.1f C, VBAT=%.3f V",
+         (unsigned)(i + 1), (unsigned)n,
+         (double)tmsg.c10 / 10.0,
+         (double)vmsg.mv  / 1000.0);
+
 
         if (g_cfg.delay_ms) vTaskDelay(pdMS_TO_TICKS(g_cfg.delay_ms));
     }
