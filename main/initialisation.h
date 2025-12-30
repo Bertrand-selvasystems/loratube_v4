@@ -14,6 +14,7 @@
 #include "FRAM_module.h"
 #include "system_state.h"
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -62,6 +63,8 @@ typedef struct {
 
     bool i2c_ready;
 } loratube_ctx_t;
+
+
 
 // Config par défaut
 loratube_init_config_t loratube_init_config_default(void);

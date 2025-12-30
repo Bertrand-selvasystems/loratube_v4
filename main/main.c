@@ -5,11 +5,26 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
+#include "mcu_alive_twdt.h"
+
 // Example usage (app_main or init code)
+
+
+sw_wdt_cfg_t cfg = {
+    .twdt_timeout_ms = 3000,
+    .kick_period_ms  = 1000,
+    .idle_core_mask  = 0x1,
+    .trigger_panic   = true,
+};
+
 
 
 void app_main(void)
 {
+
+
+    // lance le watchdog    
+    ESP_ERROR_CHECK(sw_wdt_start(&cfg));
     
     loratube_ctx_t ctx;
     loratube_init_config_t icfg = loratube_init_config_default();
