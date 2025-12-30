@@ -7,6 +7,7 @@
 #include "freertos/queue.h"
 #include "mcu_alive_twdt.h"
 #include "mesure_task.h"
+#include "rtc_task.h"
 
 // Example usage (app_main or init code)
 
@@ -23,6 +24,8 @@ static const mesure_task_cfg_t g_mes_cfg = {
 };
 
 
+
+
 void app_main(void)
 {
 
@@ -33,6 +36,13 @@ void app_main(void)
 
     loratube_test_config_t tcfg = loratube_test_config_default();
     ESP_ERROR_CHECK(loratube_run_tests(&ctx, &tcfg));
+
+    // ===== RTC one-shot service =====
+    // (loratube_init() doit avoir initialisé ctx.rtc et mis ctx.i2c_ready = true)
+    rtc_task_cfg_t rtc_cfg = {
+        .rtc = &ctx.rtc,
+    };
+    ESP_ERROR_CHECK(rtc_task_start(&rtc_cfg));
 
     ESP_ERROR_CHECK(pca_mgr_set_green(PCA_LED_BLINK_SLOW));
     ESP_ERROR_CHECK(pca_mgr_set_red(PCA_LED_BLINK_FAST));

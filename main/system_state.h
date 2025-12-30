@@ -51,20 +51,21 @@ extern EventGroupHandle_t eg_wake;
 // Acquisitions / données valides
 #define EGS_TEMP_VALID       ((EventBits_t)(1u << 2))  // Température mesurée OK (valeur dispo)
 #define EGS_VBAT_VALID       ((EventBits_t)(1u << 3))  // VBAT mesurée OK (valeur dispo)
+#define EGS_DATE_VALID       ((EventBits_t)(1u << 4))  // VBAT mesurée OK (valeur dispo)
 
 // États actionneurs (debug/cohérence)
-#define EGS_LED_GREEN_ON     ((EventBits_t)(1u << 4))
-#define EGS_LED_RED_ON       ((EventBits_t)(1u << 5))
-#define EGS_BUCK_FORCED_ON   ((EventBits_t)(1u << 6))  // Buck forcé ON (non ECO)
-#define EGS_E22_POWERED      ((EventBits_t)(1u << 7))  // Alim E22 active
+#define EGS_LED_GREEN_ON     ((EventBits_t)(1u << 5))
+#define EGS_LED_RED_ON       ((EventBits_t)(1u << 6))
+#define EGS_BUCK_FORCED_ON   ((EventBits_t)(1u << 7))  // Buck forcé ON (non ECO)
+#define EGS_E22_POWERED      ((EventBits_t)(1u << 8))  // Alim E22 active
 
 // Erreurs latched
-#define EGS_ERR_FRAM         ((EventBits_t)(1u << 8))
-#define EGS_ERR_RTC          ((EventBits_t)(1u << 9))
-#define EGS_ERR_PCA          ((EventBits_t)(1u << 10))
-#define EGS_ERR_E22          ((EventBits_t)(1u << 11))
-#define EGS_ERR_LOW_VBAT     ((EventBits_t)(1u << 12))
-#define EGS_ERR_DATE         ((EventBits_t)(1u << 13))
+#define EGS_ERR_FRAM         ((EventBits_t)(1u << 9))
+#define EGS_ERR_RTC          ((EventBits_t)(1u << 10))
+#define EGS_ERR_PCA          ((EventBits_t)(1u << 11))
+#define EGS_ERR_E22          ((EventBits_t)(1u << 12))
+#define EGS_ERR_LOW_VBAT     ((EventBits_t)(1u << 13))
+#define EGS_ERR_DATE         ((EventBits_t)(1u << 14))
 
 // =====================
 // Init / helpers
